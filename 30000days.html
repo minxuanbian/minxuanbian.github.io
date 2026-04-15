@@ -39,7 +39,7 @@
       opacity: 0.6;
     }
 
-    /* 🌧️ 手绘感乱雨（正确写法） */
+    /* ✏️ Procreate铅笔感雨（干净版本） */
     body::after {
       content: "";
       position: fixed;
@@ -51,27 +51,37 @@
       z-index: 9999;
 
       background-image:
-        linear-gradient(115deg, rgba(255,255,255,0.12) 3px, transparent 5px),
-        linear-gradient(125deg, rgba(255,255,255,0.08) 2px, transparent 6px),
-        linear-gradient(118deg, rgba(255,255,255,0.06) 4px, transparent 7px);
+        repeating-linear-gradient(
+          112deg,
+          rgba(255,255,255,0.14) 0px,
+          rgba(255,255,255,0.14) 2px,
+          transparent 2px,
+          transparent 10px
+        ),
+        repeating-linear-gradient(
+          120deg,
+          rgba(255,255,255,0.08) 0px,
+          rgba(255,255,255,0.08) 1.5px,
+          transparent 1.5px,
+          transparent 12px
+        );
 
       background-size: 
-        140px 220px,
-        180px 260px,
-        160px 240px;
+        200px 280px,
+        240px 320px;
 
-      animation: rainMove 2.2s linear infinite;
+      animation: rainMove 3s linear infinite;
     }
 
     @keyframes rainMove {
       0% {
-        background-position: 0 0, 0 0, 0 0;
+        background-position: 0 0, 0 0;
       }
       50% {
-        background-position: -60px 110px, -90px 140px, -70px 120px;
+        background-position: -80px 140px, -120px 180px;
       }
       100% {
-        background-position: -140px 220px, -180px 260px, -160px 240px;
+        background-position: -200px 280px, -240px 320px;
       }
     }
 
