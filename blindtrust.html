@@ -27,6 +27,7 @@
     p {
       max-width: 720px;
       color: #eee;
+      margin-bottom: 20px;
     }
 
     a {
@@ -34,7 +35,7 @@
       text-decoration: none;
     }
 
-    /* 🌕 扩散圆 */
+    /* 🌕 圆 */
     .circle {
       position: fixed;
       border-radius: 50%;
@@ -55,8 +56,8 @@
         opacity: 0;
       }
     }
-  </style>
 
+  </style>
 </head>
 
 <body>
@@ -65,7 +66,15 @@
   <h3>Project in Development</h3>
 
   <p>
-    <!-- 你之后在这里写内容 -->
+    This project explores the unstable boundary between perception and belief — how trust is formed, misplaced, or imagined in the absence of certainty.
+  </p>
+
+  <p>
+    <!-- 你可以继续写：你为什么做这个作品 -->
+  </p>
+
+  <p>
+    <!-- 你可以写：这个作品在问什么 -->
   </p>
 
   <br><br>
@@ -76,8 +85,23 @@
       const circle = document.createElement("div");
       circle.classList.add("circle");
 
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * window.innerHeight;
+      let x, y;
+
+      const zone = Math.random();
+
+      if (zone < 0.6) {
+        // ⭐ 60% 概率：中间偏左（引导阅读区）
+        x = Math.random() * window.innerWidth * 0.6;
+        y = Math.random() * window.innerHeight * 0.7;
+      } else if (zone < 0.85) {
+        // ⭐ 25%：中间区域
+        x = Math.random() * window.innerWidth * 0.8;
+        y = Math.random() * window.innerHeight * 0.8;
+      } else {
+        // ⭐ 15%：边缘（保留空间感）
+        x = Math.random() * window.innerWidth;
+        y = Math.random() * window.innerHeight;
+      }
 
       circle.style.left = x + "px";
       circle.style.top = y + "px";
@@ -91,7 +115,7 @@
 
     setInterval(() => {
       createCircle();
-    }, 4500); // 一次一个
+    }, 4500);
   </script>
 
 </body>
