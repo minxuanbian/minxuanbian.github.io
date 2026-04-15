@@ -40,46 +40,70 @@ background: #0e2230;
     }
 
     /* ✏️ Procreate铅笔感雨（干净版本） */
+/* 🌧️ 主雨层（正常） */
 body::after {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  pointer-events: none;
+  z-index: 9998;
+
+  background-image:
+    repeating-linear-gradient(
+      112deg,
+      rgba(255,255,255,0.14) 0px,
+      rgba(255,255,255,0.14) 2px,
+      transparent 2px,
+      transparent 10px
+    );
+
+  background-size: 200px 280px;
+
+  animation: rainMain 6s linear infinite;
+}
+
+/* 🌧️ 慢雨层（局部更慢） */
+body::before {
+  content: "";
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
   pointer-events: none;
   z-index: 9999;
 
   background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(white 1.5px, transparent 1.5px);
+    repeating-linear-gradient(
+      118deg,
+      rgba(255,255,255,0.08) 0px,
+      rgba(255,255,255,0.08) 2px,
+      transparent 2px,
+      transparent 14px
+    );
 
-  background-size: 120px 180px, 160px 220px;
+  background-size: 260px 360px;
 
-  animation: rainSoft 6s linear infinite;
-  opacity: 0.4;
+  /* 👇 关键：遮罩让它只出现在部分区域 */
+  mask-image: radial-gradient(circle at 70% 30%, white 20%, transparent 60%);
+  -webkit-mask-image: radial-gradient(circle at 70% 30%, white 20%, transparent 60%);
+
+  animation: rainSlow 10s linear infinite;
 }
 
-@keyframes rainSoft {
-  from {
-    background-position: 0 0, 0 0;
-  }
-  to {
-    background-position: -40px 100px, -60px 140px;
-  }
+/* 🌧️ 动画 */
+@keyframes rainMain {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-200px, 280px); }
 }
 
-    @keyframes rainMove {
-      0% {
-        background-position: 0 0, 0 0;
-      }
-      50% {
-        background-position: -80px 140px, -120px 180px;
-      }
-      100% {
-        background-position: -200px 280px, -240px 320px;
-      }
-    }
+@keyframes rainSlow {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-120px, 200px); }
+}
 
   </style>
 
