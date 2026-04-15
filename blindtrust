@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blind Trust</title>
+
+  <style>
+    body {
+      background: #5e616d;
+      color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 60px;
+      line-height: 1.7;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #ddd;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    p {
+      max-width: 720px;
+      color: #eee;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* 🌕 扩散圆 */
+    .circle {
+      position: fixed;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      pointer-events: none;
+      animation: expand 4s linear forwards;
+    }
+
+    @keyframes expand {
+      from {
+        width: 0;
+        height: 0;
+        opacity: 0.8;
+      }
+      to {
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Blind Trust</h1>
+  <h3>Project in Development</h3>
+
+  <p>
+    <!-- 你之后在这里写内容 -->
+  </p>
+
+  <br><br>
+  <a href="works.html">← Back to Works</a>
+
+  <script>
+    function createCircle() {
+      const circle = document.createElement("div");
+      circle.classList.add("circle");
+
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+
+      circle.style.left = x + "px";
+      circle.style.top = y + "px";
+
+      document.body.appendChild(circle);
+
+      setTimeout(() => {
+        circle.remove();
+      }, 4000);
+    }
+
+    setInterval(() => {
+      createCircle();
+    }, 4500); // 一次一个
+  </script>
+
+</body>
+</html>
