@@ -2,7 +2,40 @@
 <html>
 <head>
   <title>30,000 Days</title>
-  <style>
+<style>
+  body {
+    background: #0a0f14; /* 冷蓝黑 */
+    color: #e8eef2; /* 冷白 */
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 60px;
+    line-height: 1.7;
+  }
+
+  h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    color: #f0f6fa;
+  }
+
+  h3 {
+    color: #8fa3b0; /* 冷灰蓝 */
+    font-weight: normal;
+  }
+
+  p {
+    max-width: 720px;
+    color: #b7c6d1; /* 柔冷灰 */
+  }
+
+  a {
+    color: #9fb7c6;
+    text-decoration: none;
+  }
+
+  a:hover {
+    opacity: 0.6;
+  }
+</style>
     body {
       background: black;
       color: white;
@@ -35,8 +68,28 @@
     }
   </style>
 </head>
+<style>
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px
+  );
+  background-size: 2px 24px;
+  animation: rain 1.2s linear infinite;
+  pointer-events: none;
+}
 
-<body>
+@keyframes rain {
+  from { transform: translateY(0); }
+  to { transform: translateY(24px); }
+}
+</style>
 
   <h1>30,000 Days (Wrinkle, Wrinkle, Little Star)</h1>
   <h3>Site-adaptable performance</h3>
