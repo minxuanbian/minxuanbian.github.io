@@ -40,7 +40,7 @@ background: #0e2230;
     }
 
     /* ✏️ Procreate铅笔感雨（干净版本） */
-/* 🌧️ 主雨层（正常） */
+/* 🌧️ 主雨（点状） */
 body::after {
   content: "";
   position: fixed;
@@ -52,20 +52,15 @@ body::after {
   z-index: 9998;
 
   background-image:
-    repeating-linear-gradient(
-      112deg,
-      rgba(255,255,255,0.14) 0px,
-      rgba(255,255,255,0.14) 2px,
-      transparent 2px,
-      transparent 10px
-    );
+    radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.5) 1.5px, transparent 1.5px);
 
-  background-size: 200px 280px;
+  background-size: 120px 180px, 160px 220px;
 
-  animation: rainMain 6s linear infinite;
+  animation: rainMain 8s linear infinite;
 }
 
-/* 🌧️ 慢雨层（局部更慢） */
+/* 🌧️ 局部慢雨（只在某区域出现） */
 body::before {
   content: "";
   position: fixed;
@@ -77,32 +72,26 @@ body::before {
   z-index: 9999;
 
   background-image:
-    repeating-linear-gradient(
-      118deg,
-      rgba(255,255,255,0.08) 0px,
-      rgba(255,255,255,0.08) 2px,
-      transparent 2px,
-      transparent 14px
-    );
+    radial-gradient(rgba(255,255,255,0.6) 1.2px, transparent 1.2px);
 
-  background-size: 260px 360px;
+  background-size: 180px 240px;
 
-  /* 👇 关键：遮罩让它只出现在部分区域 */
-  mask-image: radial-gradient(circle at 70% 30%, white 20%, transparent 60%);
-  -webkit-mask-image: radial-gradient(circle at 70% 30%, white 20%, transparent 60%);
+  /* 👇 局部区域 */
+  mask-image: radial-gradient(circle at 70% 30%, white 25%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 70% 30%, white 25%, transparent 70%);
 
-  animation: rainSlow 10s linear infinite;
+  animation: rainSlow 14s linear infinite;
 }
 
-/* 🌧️ 动画 */
+/* 🌧️ 动画（无缝） */
 @keyframes rainMain {
   from { transform: translate(0, 0); }
-  to   { transform: translate(-200px, 280px); }
+  to   { transform: translate(-120px, 180px); }
 }
 
 @keyframes rainSlow {
   from { transform: translate(0, 0); }
-  to   { transform: translate(-120px, 200px); }
+  to   { transform: translate(-80px, 120px); }
 }
 
   </style>
