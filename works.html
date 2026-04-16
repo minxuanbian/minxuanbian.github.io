@@ -20,6 +20,7 @@
     .container {
       display: flex;
       gap: 80px;
+      align-items: flex-start; /* 防止错位 */
     }
 
     .column {
@@ -33,7 +34,6 @@
       position: relative;
     }
 
-    /* ✨ 细横线 */
     h3::after {
       content: "";
       display: block;
@@ -64,7 +64,6 @@
       transition: color 0.3s;
     }
 
-    /* 🎯 hover情绪 */
     a[href="30000days.html"]:hover {
       color: #144a74;
     }
@@ -76,7 +75,6 @@
     a:hover {
       opacity: 0.8;
     }
-
   </style>
 </head>
 
@@ -86,7 +84,7 @@
 
   <div class="container">
 
-    <!-- 🌱 左：Development -->
+    <!-- 🌱 左边 -->
     <div class="column">
       <h3>Works in Development</h3>
 
@@ -100,24 +98,18 @@
         <p>A performance happens in the dark.</p>
       </div>
 
-      <!-- 预留 -->
       <div class="project">
         <h2>Untitled Project</h2>
         <p>In development.</p>
       </div>
 
       <div class="project">
-        <h2>Untitled Project</h2>
-        <p>In development.</p>
-      
-        <div class="project">
-  <h2 style="opacity:0.5;">To Be Continued</h2>
-  <p style="color:#666;">Ongoing explorations.</p>
-</div>
-
+        <h2 style="opacity:0.5;">To Be Continued</h2>
+        <p style="color:#666;">Ongoing explorations.</p>
+      </div>
     </div>
 
-    <!-- 🎭 右：Selected -->
+    <!-- 🎭 右边 -->
     <div class="column">
       <h3>Selected Works</h3>
 
