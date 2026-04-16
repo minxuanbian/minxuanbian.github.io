@@ -16,34 +16,46 @@
       margin-bottom: 40px;
     }
 
+    /* 🌗 左右布局 */
+    .container {
+      display: flex;
+      gap: 80px;
+    }
+
+    .column {
+      width: 50%;
+    }
+
     h3 {
       color: #aaa;
       font-weight: normal;
-      margin-top: 60px;
+      margin-bottom: 20px;
       position: relative;
     }
 
-    /* ✨ 更干净的横线（不是切断，是标记） */
+    /* ✨ 细横线 */
     h3::after {
       content: "";
       display: block;
-      width: 60px;
+      width: 50px;
       height: 1px;
       background: #333;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .project {
-      margin-top: 30px;
+      margin-top: 25px;
     }
 
     h2 {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      font-size: 22px;
     }
 
     p {
       color: #bbb;
       margin: 0;
+      font-size: 14px;
     }
 
     a {
@@ -52,7 +64,7 @@
       transition: color 0.3s;
     }
 
-    /* 🎯 hover 区分作品 */
+    /* 🎯 hover情绪 */
     a[href="30000days.html"]:hover {
       color: #144a74;
     }
@@ -72,51 +84,61 @@
 
   <h1>Works</h1>
 
-  <!-- 🌱 Development -->
-  <h3>Works in Development</h3>
+  <div class="container">
 
-  <div class="project">
-    <h2><a href="30000days.html">30,000 Days</a></h2>
-    <p>A performance lies in the wrinkle of time.</p>
-  </div>
+    <!-- 🌱 左：Development -->
+    <div class="column">
+      <h3>Works in Development</h3>
 
-  <div class="project">
-    <h2><a href="blindtrust.html">Blind Trust</a></h2>
-    <p>A performance happens in the dark.</p>
-  </div>
+      <div class="project">
+        <h2><a href="30000days.html">30,000 Days</a></h2>
+        <p>A performance lies in the wrinkle of time.</p>
+      </div>
 
-  <!-- ✨ 预留未来作品 -->
-  <div class="project">
-    <h2>Untitled Project</h2>
-    <p>In development.</p>
-  </div>
+      <div class="project">
+        <h2><a href="blindtrust.html">Blind Trust</a></h2>
+        <p>A performance happens in the dark.</p>
+      </div>
 
-  <div class="project">
-    <h2>Untitled Project</h2>
-    <p>In development.</p>
-  </div>
+      <!-- 预留 -->
+      <div class="project">
+        <h2>Untitled Project</h2>
+        <p>In development.</p>
+      </div>
 
-  <!-- 🎭 Selected -->
-  <h3>Selected Works</h3>
+      <div class="project">
+        <h2>Untitled Project</h2>
+        <p>In development.</p>
+      </div>
 
-  <div class="project">
-    <h2>4.48 Psychosis (2025)</h2>
-  </div>
+    </div>
 
-  <div class="project">
-    <h2>Reincarnation (2024)</h2>
-  </div>
+    <!-- 🎭 右：Selected -->
+    <div class="column">
+      <h3>Selected Works</h3>
 
-  <div class="project">
-    <h2>Sundial (2023)</h2>
-  </div>
+      <div class="project">
+        <h2>4.48 Psychosis (2025)</h2>
+      </div>
 
-  <div class="project">
-    <h2>10,000 Moments (2022)</h2>
-  </div>
+      <div class="project">
+        <h2>Reincarnation (2024)</h2>
+      </div>
 
-  <div class="project">
-    <h2>Mood Diary (2021)</h2>
+      <div class="project">
+        <h2>Sundial (2023)</h2>
+      </div>
+
+      <div class="project">
+        <h2>10,000 Moments (2022)</h2>
+      </div>
+
+      <div class="project">
+        <h2>Mood Diary (2021)</h2>
+      </div>
+
+    </div>
+
   </div>
 
   <br><br>
