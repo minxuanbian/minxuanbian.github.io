@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Gravity</title>
+
+  <style>
+    body {
+      background: #428675;
+      color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 60px;
+      line-height: 1.7;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h3 {
+      color: #e0f2ea;
+      font-weight: normal;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    p {
+      max-width: 720px;
+      color: #e8f5f0;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 🌊 镜像文字（被拉扯） */
+    .distortion {
+      position: fixed;
+      right: 5%;
+      bottom: 5%;
+      font-size: 60px;
+      opacity: 0.08;
+      transform: scaleY(-1);
+      filter: blur(1px);
+      pointer-events: none;
+      white-space: nowrap;
+
+      animation: distort 6s ease-in-out infinite;
+    }
+
+    @keyframes distort {
+      0% {
+        transform: scaleY(-1) skewX(0deg);
+      }
+      25% {
+        transform: scaleY(-1) skewX(10deg);
+      }
+      50% {
+        transform: scaleY(-1) skewX(-8deg);
+      }
+      75% {
+        transform: scaleY(-1) skewX(6deg);
+      }
+      100% {
+        transform: scaleY(-1) skewX(0deg);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h1>The Gravity</h1>
+  <h3>Project in Development</h3>
+
+  <p>The gravity in people’s words and actions.</p>
+
+  <p>
+    Individuals within a democracy may hold the power to change the world. 
+    But how can they carry this power within themselves?
+  </p>
+
+  <p>
+    How do they face the community around them — how do they lead, and how do they confront failure?
+  </p>
+
+  <p>
+    Democracy encourages individuals to speak, but also asks them to be responsible for what they bring into the world.
+  </p>
+
+  <p>
+    If it ends in success, that gravity becomes a force that attracts others.  
+    But before that — one must first bet on oneself.
+  </p>
+
+  <br><br>
+  <a href="works.html">← Back to Works</a>
+
+  <!-- 🌊 扭曲镜像 -->
+  <div class="distortion">
+    THE GRAVITY
+  </div>
+
+</body>
+</html>
