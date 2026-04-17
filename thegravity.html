@@ -11,13 +11,12 @@
       margin: 60px;
       line-height: 1.7;
       overflow: hidden;
-      position: relative;
     }
 
     .content {
+      max-width: 720px;
       position: relative;
       z-index: 2;
-      max-width: 720px;
     }
 
     h1 {
@@ -25,8 +24,8 @@
       margin-bottom: 10px;
     }
 
-   h3 {
-      color: #e8f5f0;
+    h3 {
+      color: #e0f2ea;
       font-weight: normal;
       margin-bottom: 30px;
     }
@@ -41,45 +40,28 @@
       text-decoration: none;
     }
 
-    /* 🌊 镜像整体（所有文字） */
-    .mirror {
+    /* 🌪️ 漩涡镜像层 */
+    .distortion {
       position: fixed;
-      left: 5%;
-      bottom: 5%;
+      right: 0;
+      bottom: 0;
       width: 60%;
-      opacity: 0.08;
-      transform: scaleY(-1);
+      height: 60%;
+      opacity: 0.25;
       pointer-events: none;
-      filter: blur(1px);
+
+      filter: url(#warp) blur(2px);
+      transform: scaleY(-1);
       z-index: 1;
-
-      animation: swirl 8s infinite linear;
     }
 
-    /* 🌪️ 漩涡扭曲 */
-    @keyframes swirl {
-      0% {
-        transform: scaleY(-1) rotate(0deg) skew(0deg,0deg);
+    /* 📱 手机适配（避免太小） */
+    @media (max-width: 600px) {
+      .distortion {
+        width: 90%;
+        height: 60%;
+        opacity: 0.2;
       }
-      25% {
-        transform: scaleY(-1) rotate(1deg) skew(3deg,1deg);
-      }
-      50% {
-        transform: scaleY(-1) rotate(-1deg) skew(-4deg,-2deg);
-      }
-      75% {
-        transform: scaleY(-1) rotate(1.5deg) skew(2deg,3deg);
-      }
-      100% {
-        transform: scaleY(-1) rotate(0deg) skew(0deg,0deg);
-      }
-    }
-
-    /* 🌀 鼠标靠近增强（重力吸引） */
-    body:hover .mirror {
-      animation-duration: 3s;
-      opacity: 0.12;
-      filter: blur(2px);
     }
 
   </style>
@@ -87,10 +69,10 @@
 
 <body>
 
-  <!-- 🎭 正常文字 -->
+  <!-- 🎭 正常内容 -->
   <div class="content">
     <h1>The Gravity</h1>
-    <h3>Environmental or proscenium performance</h3>
+    <h3>Project in Development</h3>
 
     <p>The gravity in people’s words and actions.</p>
 
@@ -116,8 +98,8 @@
     <a href="works.html">← Back to Works</a>
   </div>
 
-  <!-- 🌊 镜像文字（整段复制） -->
-  <div class="mirror">
+  <!-- 🌊 被扭曲的镜像文字 -->
+  <div class="distortion">
     <h1>The Gravity</h1>
     <h3>Project in Development</h3>
 
@@ -141,6 +123,29 @@
       But before that — one must first bet on oneself.
     </p>
   </div>
+
+  <!-- 🌪️ 真正的“漩涡扭曲引擎” -->
+  <svg width="0" height="0">
+    <filter id="warp">
+      <feTurbulence 
+        type="turbulence" 
+        baseFrequency="0.01 0.02" 
+        numOctaves="3" 
+        result="turbulence">
+        <animate attributeName="baseFrequency"
+          dur="8s"
+          values="0.01 0.02; 0.02 0.03; 0.01 0.02"
+          repeatCount="indefinite"/>
+      </feTurbulence>
+
+      <feDisplacementMap 
+        in="SourceGraphic" 
+        in2="turbulence" 
+        scale="120" 
+        xChannelSelector="R" 
+        yChannelSelector="G"/>
+    </filter>
+  </svg>
 
 </body>
 </html>
