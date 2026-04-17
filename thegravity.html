@@ -14,67 +14,72 @@
       position: relative;
     }
 
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
     h1 {
       font-size: 42px;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 2;
     }
 
     h3 {
       color: #e0f2ea;
       font-weight: normal;
       margin-bottom: 30px;
-      position: relative;
-      z-index: 2;
     }
 
     p {
-      max-width: 720px;
       color: #e8f5f0;
       margin-bottom: 20px;
-      position: relative;
-      z-index: 2;
     }
 
     a {
       color: white;
       text-decoration: none;
-      position: relative;
-      z-index: 2;
     }
 
-    /* 🌊 镜像文字（被拉扯） */
-    .distortion {
+    /* 🌊 镜像整体（所有文字） */
+    .mirror {
       position: fixed;
-      right: 5%;
+      left: 5%;
       bottom: 5%;
-      font-size: 60px;
+      width: 60%;
       opacity: 0.08;
       transform: scaleY(-1);
-      filter: blur(1px);
       pointer-events: none;
-      white-space: nowrap;
+      filter: blur(1px);
+      z-index: 1;
 
-      animation: distort 6s ease-in-out infinite;
+      animation: swirl 8s infinite linear;
     }
 
-    @keyframes distort {
+    /* 🌪️ 漩涡扭曲 */
+    @keyframes swirl {
       0% {
-        transform: scaleY(-1) skewX(0deg);
+        transform: scaleY(-1) rotate(0deg) skew(0deg,0deg);
       }
       25% {
-        transform: scaleY(-1) skewX(10deg);
+        transform: scaleY(-1) rotate(1deg) skew(3deg,1deg);
       }
       50% {
-        transform: scaleY(-1) skewX(-8deg);
+        transform: scaleY(-1) rotate(-1deg) skew(-4deg,-2deg);
       }
       75% {
-        transform: scaleY(-1) skewX(6deg);
+        transform: scaleY(-1) rotate(1.5deg) skew(2deg,3deg);
       }
       100% {
-        transform: scaleY(-1) skewX(0deg);
+        transform: scaleY(-1) rotate(0deg) skew(0deg,0deg);
       }
+    }
+
+    /* 🌀 鼠标靠近增强（重力吸引） */
+    body:hover .mirror {
+      animation-duration: 3s;
+      opacity: 0.12;
+      filter: blur(2px);
     }
 
   </style>
@@ -82,35 +87,59 @@
 
 <body>
 
-  <h1>The Gravity</h1>
-  <h3>Project in Development</h3>
+  <!-- 🎭 正常文字 -->
+  <div class="content">
+    <h1>The Gravity</h1>
+    <h3>Project in Development</h3>
 
-  <p>The gravity in people’s words and actions.</p>
+    <p>The gravity in people’s words and actions.</p>
 
-  <p>
-    Individuals within a democracy may hold the power to change the world. 
-    But how can they carry this power within themselves?
-  </p>
+    <p>
+      Individuals within a democracy may hold the power to change the world. 
+      But how can they carry this power within themselves?
+    </p>
 
-  <p>
-    How do they face the community around them — how do they lead, and how do they confront failure?
-  </p>
+    <p>
+      How do they face the community around them — how do they lead, and how do they confront failure?
+    </p>
 
-  <p>
-    Democracy encourages individuals to speak, but also asks them to be responsible for what they bring into the world.
-  </p>
+    <p>
+      Democracy encourages individuals to speak, but also asks them to be responsible for what they bring into the world.
+    </p>
 
-  <p>
-    If it ends in success, that gravity becomes a force that attracts others.  
-    But before that — one must first bet on oneself.
-  </p>
+    <p>
+      If it ends in success, that gravity becomes a force that attracts others.  
+      But before that — one must first bet on oneself.
+    </p>
 
-  <br><br>
-  <a href="works.html">← Back to Works</a>
+    <br><br>
+    <a href="works.html">← Back to Works</a>
+  </div>
 
-  <!-- 🌊 扭曲镜像 -->
-  <div class="distortion">
-    THE GRAVITY
+  <!-- 🌊 镜像文字（整段复制） -->
+  <div class="mirror">
+    <h1>The Gravity</h1>
+    <h3>Project in Development</h3>
+
+    <p>The gravity in people’s words and actions.</p>
+
+    <p>
+      Individuals within a democracy may hold the power to change the world. 
+      But how can they carry this power within themselves?
+    </p>
+
+    <p>
+      How do they face the community around them — how do they lead, and how do they confront failure?
+    </p>
+
+    <p>
+      Democracy encourages individuals to speak, but also asks them to be responsible for what they bring into the world.
+    </p>
+
+    <p>
+      If it ends in success, that gravity becomes a force that attracts others.  
+      But before that — one must first bet on oneself.
+    </p>
   </div>
 
 </body>
