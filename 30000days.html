@@ -39,98 +39,23 @@
       opacity: 0.6;
     }
 
-    /* 🌧️ 雨幕层 */
-    .rain-layer {
+    /* 🌧️ Canvas 雨 */
+    #rain {
       position: fixed;
       top: 0;
       left: 0;
-      width: 120%;
-      height: 120%;
       pointer-events: none;
       z-index: 9999;
-      transform: rotate(20deg);
+      opacity: 0.5;
+      filter: blur(0.8px);
     }
-
-    /* 每一层“空气雨” */
-    .rain-layer::before,
-    .rain-layer::after {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background-repeat: repeat;
-      opacity: 0.15;
-    }
-
-    /* 🌫️ 远处雨（模糊+细） */
-    .rain-layer::before {
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.08) 0px,
-        rgba(255,255,255,0.08) 1px,
-        transparent 3px,
-        transparent 12px
-      );
-      animation: rainSlow 18s linear infinite;
-      filter: blur(1px);
-    }
-
-    /* 🌧️ 中层雨 */
-    .rain-layer::after {
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.15) 0px,
-        rgba(255,255,255,0.15) 2px,
-        transparent 4px,
-        transparent 14px
-      );
-      animation: rainMid 10s linear infinite;
-    }
-
-    /* 🌧️ 前景层（更明显一点点） */
-    .rain-front {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 120%;
-      height: 120%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: rotate(20deg);
-      background-image: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.2) 0px,
-        rgba(255,255,255,0.2) 2px,
-        transparent 5px,
-        transparent 16px
-      );
-      animation: rainFast 6s linear infinite;
-      opacity: 0.12;
-    }
-
-    @keyframes rainSlow {
-      from { transform: translateY(0); }
-      to { transform: translateY(600px); }
-    }
-
-    @keyframes rainMid {
-      from { transform: translateY(0); }
-      to { transform: translateY(800px); }
-    }
-
-    @keyframes rainFast {
-      from { transform: translateY(0); }
-      to { transform: translateY(1000px); }
-    }
-
   </style>
 </head>
 
 <body>
 
   <!-- 🌧️ 雨 -->
-  <div class="rain-layer"></div>
-  <div class="rain-front"></div>
+  <canvas id="rain"></canvas>
 
   <h1>30,000 Days (Wrinkle, Wrinkle, Little Star)</h1>
   <h3>Site-adaptable performance</h3>
@@ -156,6 +81,65 @@
 
   <br><br>
   <a href="works.html">← Back to Works</a>
+
+  <script>
+    const canvas = document.getElementById("rain");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    let drops = [];
+
+    function createRain() {
+      drops = [];
+      for (let i = 0; i < 160; i++) {
+        drops.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          length: Math.random() * 6 + 4,     // 更短 → 不像线
+          speed: Math.random() * 1.2 + 0.4,  // 慢一点 → drizzle
+          opacity: Math.random() * 0.12 + 0.03
+        });
+      }
+    }
+
+    createRain();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drops.forEach(d => {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(255,255,255,${d.opacity})`;
+        ctx.lineWidth = 1;
+
+        // 🌧️ 斜向（右上 → 左下）
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x - d.length, d.y + d.length * 1.5);
+
+        ctx.stroke();
+
+        d.x -= d.speed * 0.6;
+        d.y += d.speed;
+
+        // 循环
+        if (d.y > canvas.height) {
+          d.y = -10;
+          d.x = Math.random() * canvas.width;
+        }
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
 
 </body>
 </html>
