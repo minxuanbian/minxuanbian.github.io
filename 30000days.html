@@ -5,7 +5,7 @@
 
   <style>
     body {
-      background: #0e2230;
+      background: #158bb8; /* ✅ 你要的颜色 */
       color: #e8eef2;
       font-family: Helvetica, Arial, sans-serif;
       margin: 60px;
@@ -19,19 +19,19 @@
     }
 
     h3 {
-      color: #8fa3b0;
+      color: #d6e4ec;
       font-weight: normal;
       margin-bottom: 30px;
     }
 
     p {
       max-width: 720px;
-      color: #b7c6d1;
+      color: #e0edf3;
       margin-bottom: 20px;
     }
 
     a {
-      color: #9fb7c6;
+      color: #ffffff;
       text-decoration: none;
     }
 
@@ -39,48 +39,43 @@
       opacity: 0.6;
     }
 
-    /* 🌧️ Canvas 雨 */
     #rain {
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.5;
-      filter: blur(0.8px);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🌧️ 雨 -->
-  <canvas id="rain"></canvas>
+<canvas id="rain"></canvas>
 
-  <h1>30,000 Days (Wrinkle, Wrinkle, Little Star)</h1>
-  <h3>Site-adaptable performance</h3>
+<h1>30,000 Days (Wrinkle, Wrinkle, Little Star)</h1>
+<h3>Site-adaptable performance</h3>
 
-  <p>
-    This project explores the subtle distortions of time in human life — its folds, its repetitions, and its quiet dissolving edges.
-  </p>
+<p>
+This project explores the subtle distortions of time in human life — its folds, its repetitions, and its quiet dissolving edges.
+</p>
 
-  <p>
-    Inspired by the lived experience of Alzheimer’s disease, the work approaches memory not as a linear narrative, but as something that drifts, overlaps, and reappears without warning. Fragments of the past emerge like a light drizzle — unfinished, fragile, yet persistent.
-  </p>
+<p>
+Inspired by the lived experience of Alzheimer’s disease, the work approaches memory not as a linear narrative, but as something that drifts, overlaps, and reappears without warning. Fragments of the past emerge like a light drizzle — unfinished, fragile, yet persistent.
+</p>
 
-  <p>
-    At its center is a final day that is both ordinary and irreversible. Within this blurred temporality, the desire to say goodbye becomes urgent yet impossible to complete.
-  </p>
+<p>
+At its center is a final day that is both ordinary and irreversible. Within this blurred temporality, the desire to say goodbye becomes urgent yet impossible to complete.
+</p>
 
-  <p>
-    The work asks:
-    <br><br>
-    How do we say goodbye to a life that is already slipping away?<br>
-    And how do we recognize the ones who have been our light, when time itself begins to forget?
-  </p>
+<p>
+The work asks:<br><br>
+How do we say goodbye to a life that is already slipping away?<br>
+And how do we recognize the ones who have been our light, when time itself begins to forget?
+</p>
 
-  <br><br>
-  <a href="works.html">← Back to Works</a>
+<br><br>
+<a href="works.html">← Back to Works</a>
 
 <script>
 const canvas = document.getElementById("rain");
@@ -95,50 +90,39 @@ window.addEventListener("resize", resize);
 
 let drops = [];
 
-function createRain() {
-  drops = [];
-  for (let i = 0; i < 140; i++) {
-    drops.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      len: Math.random() * 4 + 2,     // 🔥 很短 → 不形成线
-      speed: Math.random() * 0.8 + 0.3,
-      opacity: Math.random() * 0.08 + 0.02,
-      drift: Math.random() * 0.5      // 横向微抖
-    });
-  }
+// 🌧️ 创建雨（更明显）
+for (let i = 0; i < 180; i++) {
+  drops.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    len: Math.random() * 8 + 4,   // 稍微长一点（更可见）
+    speed: Math.random() * 1.5 + 0.5,
+    opacity: Math.random() * 0.25 + 0.15 // ✅ 更明显
+  });
 }
 
-createRain();
-
 function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ✨ 半透明清除 → 留一点“雨幕拖影”
+  ctx.fillStyle = "rgba(21,139,184,0.15)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   drops.forEach(d => {
-
-    // ✨ 随机“断裂感”（关键）
-    if (Math.random() < 0.35) return;
-
     ctx.beginPath();
     ctx.strokeStyle = `rgba(255,255,255,${d.opacity})`;
-    ctx.lineWidth = 0.8;
+    ctx.lineWidth = 1.2;
 
-    // 🌧️ 不再固定直线 → 带一点弯/漂
-    const dx = d.len * 0.6 + Math.random() * 0.5;
-    const dy = d.len * 1.2 + Math.random() * 0.5;
-
+    // 🌧️ 斜雨（右上 → 左下）
     ctx.moveTo(d.x, d.y);
-    ctx.lineTo(d.x - dx, d.y + dy);
+    ctx.lineTo(d.x - d.len, d.y + d.len * 1.4);
 
     ctx.stroke();
 
-    // 🌊 运动（带漂移）
-    d.x -= d.speed * (0.4 + d.drift);
+    d.x -= d.speed * 0.5;
     d.y += d.speed;
 
     // 🔁 循环
     if (d.y > canvas.height) {
-      d.y = -5;
+      d.y = -10;
       d.x = Math.random() * canvas.width;
     }
   });
