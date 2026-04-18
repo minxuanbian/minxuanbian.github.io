@@ -82,64 +82,72 @@
   <br><br>
   <a href="works.html">← Back to Works</a>
 
-  <script>
-    const canvas = document.getElementById("rain");
-    const ctx = canvas.getContext("2d");
+<script>
+const canvas = document.getElementById("rain");
+const ctx = canvas.getContext("2d");
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let drops = [];
+
+function createRain() {
+  drops = [];
+  for (let i = 0; i < 140; i++) {
+    drops.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      len: Math.random() * 4 + 2,     // 🔥 很短 → 不形成线
+      speed: Math.random() * 0.8 + 0.3,
+      opacity: Math.random() * 0.08 + 0.02,
+      drift: Math.random() * 0.5      // 横向微抖
+    });
+  }
+}
+
+createRain();
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drops.forEach(d => {
+
+    // ✨ 随机“断裂感”（关键）
+    if (Math.random() < 0.35) return;
+
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(255,255,255,${d.opacity})`;
+    ctx.lineWidth = 0.8;
+
+    // 🌧️ 不再固定直线 → 带一点弯/漂
+    const dx = d.len * 0.6 + Math.random() * 0.5;
+    const dy = d.len * 1.2 + Math.random() * 0.5;
+
+    ctx.moveTo(d.x, d.y);
+    ctx.lineTo(d.x - dx, d.y + dy);
+
+    ctx.stroke();
+
+    // 🌊 运动（带漂移）
+    d.x -= d.speed * (0.4 + d.drift);
+    d.y += d.speed;
+
+    // 🔁 循环
+    if (d.y > canvas.height) {
+      d.y = -5;
+      d.x = Math.random() * canvas.width;
     }
+  });
 
-    resize();
-    window.addEventListener("resize", resize);
+  requestAnimationFrame(draw);
+}
 
-    let drops = [];
-
-    function createRain() {
-      drops = [];
-      for (let i = 0; i < 160; i++) {
-        drops.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          length: Math.random() * 6 + 4,     // 更短 → 不像线
-          speed: Math.random() * 1.2 + 0.4,  // 慢一点 → drizzle
-          opacity: Math.random() * 0.12 + 0.03
-        });
-      }
-    }
-
-    createRain();
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      drops.forEach(d => {
-        ctx.beginPath();
-        ctx.strokeStyle = `rgba(255,255,255,${d.opacity})`;
-        ctx.lineWidth = 1;
-
-        // 🌧️ 斜向（右上 → 左下）
-        ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x - d.length, d.y + d.length * 1.5);
-
-        ctx.stroke();
-
-        d.x -= d.speed * 0.6;
-        d.y += d.speed;
-
-        // 循环
-        if (d.y > canvas.height) {
-          d.y = -10;
-          d.x = Math.random() * canvas.width;
-        }
-      });
-
-      requestAnimationFrame(draw);
-    }
-
-    draw();
-  </script>
+draw();
+</script>
 
 </body>
 </html>
