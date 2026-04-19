@@ -20,7 +20,7 @@
     .container {
       display: flex;
       gap: 80px;
-      align-items: flex-start; /* 防止错位 */
+      align-items: flex-start;
     }
 
     .column {
@@ -64,17 +64,18 @@
       transition: color 0.3s;
     }
 
-    a[href="30000days.html"]:hover {
-      color: #158bb8;
-    }
+    /* 🎯 Development hover */
+    a[href="30000days.html"]:hover { color: #158bb8; }
+    a[href="blindtrust.html"]:hover { color: #302f4b; }
+    a[href="thegravity.html"]:hover { color: #428675; }
 
-    a[href="blindtrust.html"]:hover {
-      color: #302f4b;
-    }
+    /* 🎯 Selected hover（你指定的颜色） */
+    a[href="4.48psychosis.html"]:hover { color: #fcd217; }
+    a[href="reincarnation.html"]:hover { color: #45b787; }
+    a[href="sundial.html"]:hover { color: #f7f4ed; }
+    a[href="10000moments.html"]:hover { color: #f07c82; }
+    a[href="mooddiary.html"]:hover { color: #c45a65; }
 
-    a[href="thegravity.html"]:hover {
-  color: #428675;
-    }
   </style>
 </head>
 
@@ -114,23 +115,23 @@
       <h3>Selected Works</h3>
 
       <div class="project">
-        <h2>4.48 Psychosis (2025)</h2>
+        <h2><a href="4.48psychosis.html">4.48 Psychosis (2025)</a></h2>
       </div>
 
       <div class="project">
-        <h2>Reincarnation (2024)</h2>
+        <h2><a href="reincarnation.html">Reincarnation (2024)</a></h2>
       </div>
 
       <div class="project">
-        <h2>Sundial (2023)</h2>
+        <h2><a href="sundial.html">Sundial (2023)</a></h2>
       </div>
 
       <div class="project">
-        <h2>10,000 Moments (2022)</h2>
+        <h2><a href="10000moments.html">10,000 Moments (2022)</a></h2>
       </div>
 
       <div class="project">
-        <h2>Mood Diary (2021)</h2>
+        <h2><a href="mooddiary.html">Mood Diary (2021)</a></h2>
       </div>
 
     </div>
