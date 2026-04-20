@@ -12,19 +12,44 @@
       line-height: 1.7;
     }
 
-    h1 { font-size: 42px; }
+    h1 {
+      font-size: 42px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    /* 🎭 作者 */
+    .author {
+      font-size: 20px;
+      color: #4a6a94;
+      font-weight: normal;
+    }
 
     .section { margin-top: 30px; }
 
+    /* 📸 图像区域 */
     .scroll {
       display: flex;
       overflow-x: auto;
-      gap: 20px;
+      gap: 30px;
       margin-top: 40px;
+      align-items: flex-start;
     }
 
-    .scroll img {
-      height: 240px;
+    /* 🖼️ 竖海报 */
+    .poster {
+      width: 220px;
+      height: 320px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* 🎬 横剧照 */
+    .still {
+      width: 420px;
+      height: 260px;
+      object-fit: cover;
       flex-shrink: 0;
     }
 
@@ -47,7 +72,10 @@
 
 <a href="works.html">← Back to Works</a>
 
-<h1>4.48 Psychosis</h1>
+<h1>
+  4.48 Psychosis 
+  <span class="author">by Sarah Kane</span>
+</h1>
 
 <div class="section">
 <p><strong>This work focuses on:</strong> Dislocation between memory and reality.</p>
@@ -65,28 +93,34 @@
 <p><strong>Duration:</strong> November 2025</p>
 </div>
 
+<!-- 📸 图片 -->
 <div class="scroll">
-  <img src="448_1.jpg">
+  <!-- 竖海报 -->
+  <img src="448_poster.jpg" class="poster">
 
-  <img src="448_3.jpg">
+  <!-- 横剧照 -->
+  <img src="448_1.jpg" class="still">
+  <img src="448_2.jpg" class="still">
 </div>
 
+<!-- 👥 团队 -->
 <div class="credits">
 
 <strong>Creative Team</strong>
 
 <strong>Stage Managers</strong>
-YT Xu,   
+YT Xu  
 Zinnia Zou  
 
 <strong>Director / Performer / Sound / Set / Poster</strong>
 Minxuan Bian  
 
 <strong>Special Thanks</strong>
-Hester Zheng,   
-Bill Wang,   
+Hester Zheng  
+Bill Wang  
 Xuan Qiu
 
 </div>
+
 </body>
 </html>
